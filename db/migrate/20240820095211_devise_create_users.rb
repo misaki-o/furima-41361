@@ -3,9 +3,17 @@
 class DeviseCreateUsers < ActiveRecord::Migration[7.0]
   def change
     create_table :users do |t|
+      # to view manual add 24_8_21
+      t.string :nickname,           null: false, default: ""
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      # hidden manual add 24_8_21
+      t.string :family_name_kanji,  null: false, default: ""
+      t.string :first_name_kanji,   null: false, default: ""
+      t.string :family_name_kana,   null: false, default: ""
+      t.string :first_name_kana,    null: false, default: ""
+      t.date   :birthday,           null: false
 
       ## Recoverable
       t.string   :reset_password_token
