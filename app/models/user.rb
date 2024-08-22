@@ -9,6 +9,7 @@ class User < ApplicationRecord
   zenkaku = /\A[ぁ-んァ-ン一-龥]+\z/    #全角かな、カナ、漢字
   katakana = /\A[ァ-ヶー－]+\z/      #全角カタカナ
 
+  validates :email, presence: true, uniqueness: true
   validates :nickname, presence: true
   validates :password, presence: true, format: { with: letter_num_mix }
   validates :family_name_kanji, presence: true, format: { with: zenkaku }

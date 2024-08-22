@@ -98,6 +98,14 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
     erubi (1.13.0)
+    factory_bot (6.4.6)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
+      railties (>= 5.0.0)
+    faker (3.4.2)
+      i18n (>= 1.8.11, < 2)
+    gimei (1.5.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.5)
@@ -200,7 +208,7 @@ GEM
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.3.5)
+    rexml (3.3.6)
       strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
@@ -285,6 +293,9 @@ DEPENDENCIES
   capybara
   debug
   devise
+  factory_bot_rails
+  faker
+  gimei
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)

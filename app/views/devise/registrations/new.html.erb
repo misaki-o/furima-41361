@@ -13,7 +13,7 @@
   <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
      <% if request.get? or @user.save %>
      <% else %>
-     <%= f.object %>
+     <% f.object %>
      <%= render 'shared/error_messages', model: f.object %>
      <% end %>
   <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
