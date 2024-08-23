@@ -16,4 +16,7 @@ class User < ApplicationRecord
   validates :family_name_kana, presence: true, format: { with: katakana }
   validates :first_name_kana, presence: true, format: { with: katakana }
   validates :birthday, presence: true
+
+  #アソシエーション
+  has_many :items
 end
