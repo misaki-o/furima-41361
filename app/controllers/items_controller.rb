@@ -56,6 +56,7 @@ class ItemsController < ApplicationController
   def user_not_match
     if current_user.id != @item.user_id
     redirect_to root_path
+    else
     end
   end
 
