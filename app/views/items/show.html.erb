@@ -35,7 +35,7 @@
 
     <%# 商品が売れていない場合購入ボタンを表示 %>
     <% if user_signed_in? && current_user.id != @item.user_id && @item.order.nil? %>
-    <%= link_to "購入画面に進む", item_orders_path(@item.id) ,class:"item-red-btn"%>
+    <%= link_to "購入画面に進む", item_orders_path(@item.id), data: { turbo: false }, class:"item-red-btn"%>
     <%end%>
    
     <%# 商品情報 %>
