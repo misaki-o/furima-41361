@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+   before_action :sold_out, only: :index
+   before_action :not_self_buy, only: :index
+   before_action :authenticate_user!, only: :index
+
   def index
      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
      @order_shipping = OrderShipping.new
@@ -33,5 +37,20 @@ class OrdersController < ApplicationController
         currency: 'jpy'                 # 通貨の種類（日本円）
       )
    end
+
+   def sold_out    
+         if Order.exists?(item_id: params[:item_id])
+         redirect_to root_path
+         else
+         end
+   end
+
+   def not_self_buy
+      @item = Item.find(params[:item_id])
+      if current_user.id == @item.user_id
+      redirect_to root_path
+      else
+      end
+end
 
 end

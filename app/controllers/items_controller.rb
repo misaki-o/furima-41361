@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
    before_action :set_item, only: [:edit, :show, :update, :destroy]
    before_action :authenticate_user!, only: [:edit, :new ,:destroy]
    before_action :user_not_match, only:[:edit, :destroy]
+   before_action :sold_out, only: :edit
 
   def index
     @item = Item.all.order("created_at DESC")
@@ -55,6 +56,13 @@ class ItemsController < ApplicationController
 
   def user_not_match
     if current_user.id != @item.user_id
+    redirect_to root_path
+    else
+    end
+  end
+
+  def sold_out
+    if Order.exists?(item_id: params[:id])
     redirect_to root_path
     else
     end
