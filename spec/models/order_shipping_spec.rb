@@ -11,7 +11,7 @@ RSpec.describe OrderShipping, type: :model do
   describe "購入機能（注文情報）" do
 
     context "購入できるとき" do
-     it "購入したいitem_id、購入者のuser_idが存在する、その他も存在する" do
+     it "購入したいitem_id、購入者のuser_idが存在する、tokenやその他も存在する" do
        expect(@order_shipping).to be_valid
      end  
      it "building(任意)以外すべて存在する" do
@@ -81,6 +81,11 @@ RSpec.describe OrderShipping, type: :model do
       @order_shipping.phone_number = '0901111555566'
       @order_shipping.valid?
       expect(@order_shipping.errors.full_messages).to include("Phone number is invalid")
+     end
+     it "tokenが空では登録できないこと" do
+      @order_shipping.token = nil
+      @order_shipping.valid?
+      expect(@order_shipping.errors.full_messages).to include("Token can't be blank")
      end
     end
   end
