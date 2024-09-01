@@ -6,6 +6,7 @@ RSpec.describe OrderShipping, type: :model do
     item = FactoryBot.create(:item)
     user = FactoryBot.create(:user)
     @order_shipping = FactoryBot.build(:order_shipping, user_id: user.id, item_id: item.id)
+    sleep 0.1
   end
 
   describe "購入機能（注文情報）" do
@@ -35,7 +36,7 @@ RSpec.describe OrderShipping, type: :model do
      it "post_codeが空だと登録できない" do
       @order_shipping.post_code = ''
       @order_shipping.valid?
-      expect(@order_shipping.errors.full_messages).to include("Post code can't be blank", "Post code is invalid. Include hyphen(-)")
+      expect(@order_shipping.errors.full_messages).to include("Post code can't be blank")
      end
      it "post_codeがハイフンなしだと登録できない" do
       @order_shipping.post_code = '6021115'

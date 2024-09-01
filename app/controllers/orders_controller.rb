@@ -1,16 +1,15 @@
 class OrdersController < ApplicationController
    before_action :sold_out, only: :index
+   before_action :find_item, only: [:index, :create]
    before_action :not_self_buy, only: :index
    before_action :authenticate_user!, only: :index
 
   def index
      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
      @order_shipping = OrderShipping.new
-     @item = Item.find(params[:item_id])   # nannde??
   end
    
    def create
-    @item = Item.find(params[:item_id])   # nannde??
     @order_shipping = OrderShipping.new(order_params)
      if @order_shipping.valid? 
     pay_item
@@ -46,11 +45,15 @@ class OrdersController < ApplicationController
    end
 
    def not_self_buy
-      @item = Item.find(params[:item_id])
+      #先にfind_itemがbefore_actionで読み込まれている状態
       if current_user.id == @item.user_id
       redirect_to root_path
       else
       end
-end
+   end
+
+   def find_item
+      @item = Item.find(params[:item_id])
+   end
 
 end
