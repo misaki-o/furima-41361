@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
+   before_action :authenticate_user!, only: :index
    before_action :sold_out, only: :index
    before_action :find_item, only: [:index, :create]
    before_action :not_self_buy, only: :index
-   before_action :authenticate_user!, only: :index
+   
 
   def index
      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
